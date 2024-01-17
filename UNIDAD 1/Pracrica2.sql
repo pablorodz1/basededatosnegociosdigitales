@@ -4,11 +4,12 @@ create database practica2
 go
 
 CREATE TABLE tblcliente (
-    idcliente INT,
+    idcliente INT not null,
     nombre VARCHAR(100) UNIQUE,
     direccion VARCHAR(100),
     tel VARCHAR(15),
-    CONSTRAINT pk_idcliente PRIMARY KEY (idcliente)
+   constraint pk_cliente
+	primary key(idcliente),
 );
 
 -- Crear tabla Empleado
@@ -28,11 +29,12 @@ CREATE TABLE tblempleado (
 
 -- Crear tabla Venta
 CREATE TABLE tblventa (
-    constraint pk_idventa
-	primary key(idventa),
+    idventa int not null,
     fecha DATE,
     idcliente INT,
     idempleado INT,
+	constraint pk_venta
+	primary key(idventa),
     FOREIGN KEY (idcliente) REFERENCES tblcliente(idcliente),
     FOREIGN KEY (idempleado) REFERENCES tblempleado(idempleado)
 );
