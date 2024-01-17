@@ -2,7 +2,8 @@
 
 create database practica2
 go
-
+use practica2
+-- Crear tabla cliente
 CREATE TABLE tblcliente (
     idcliente INT not null,
     nombre VARCHAR(100) UNIQUE,
