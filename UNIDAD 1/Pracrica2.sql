@@ -14,7 +14,7 @@ CREATE TABLE tbl_cliente (
 );
 
 -- Crear tabla Empleado
-CREATE TABLE tblempleado (
+CREATE TABLE tbl_empleado (
     idempleado int not null,
 	nombre varchar(100) not null,
 	apellidos varchar(100) not null,
@@ -29,7 +29,7 @@ CREATE TABLE tblempleado (
 	);
 
 -- Crear tabla Venta
-CREATE TABLE tblventa (
+CREATE TABLE tbl_venta (
     idventa int not null,
     fecha DATE,
     idcliente INT,
@@ -37,7 +37,8 @@ CREATE TABLE tblventa (
 	constraint pk_venta
 	primary key(idventa),
     FOREIGN KEY (idcliente) REFERENCES tblcliente(idcliente),
-    FOREIGN KEY (idempleado) REFERENCES tblempleado(idempleado)
+);
+drop table tbl_venta
 );
 
 CREATE TABLE tbldetalleventa (
@@ -51,16 +52,17 @@ foreign key (idventa) references tblventa(idventa),
 foreign key (idempleado) references tblempleado(idempleado)
 );
 
-CREATE TABLE tbl_producto (
-    idproducto INT NOT NULL,
-    descripcion VARCHAR(200) NOT NULL,
-    existencia INT NOT NULL,
-    precio_unitario DECIMAL(10,2) NOT NULL,
-    idventa INT NOT NULL,
-    idempleado INT NOT NULL,
-    CONSTRAINT pk_producto PRIMARY KEY (idproducto),
-    CONSTRAINT fk_venta FOREIGN KEY (idventa) REFERENCES tblventa(idventa),
-    CONSTRAINT fk_empleado FOREIGN KEY (idempleado) REFERENCES tblempleado(idempleado)
+CREATE TABLE tbl_producto
+idproducto int not null,
+descripcion varchar(200) not null,
+existencia int not null,
+precio unitario decimal (10,2) not null,
+idventa int not null,
+idempleado int not null,
+constraint pk_producto
+primary key (idproducto),
+foreign key (idventa) references tblventa(idventa),
+foreign key (idempleado) references tblempleado(idempleado)
 );
 
 
