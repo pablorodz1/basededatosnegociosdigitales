@@ -200,6 +200,45 @@ UnitsInStock as Existencia, UnitPrice as 'Precio' from Products as P
 inner join [Order Details] as od
 on p.ProductID = od.ProductID
 
+-- seleccionar el total en dinero que ha vendido la empresa
+
+select sum(UnitPrice*Quantity) as 'Total' from [Order Details]
+
+-- seleccionar el total de venta del producto chang
+
+select sum(UnitPrice * Quantity) as Total
+from [Order Details]
+where ProductID = 2
+
+-- Seleccionar el promedio de los precios de los productos
+
+use NORTHWND
+
+select AVG(UnitPrice) as 'Promedio Productos'
+from products
+
+-- seleccionar el promedio total y el total de venta de prodcuctos 41, 60 y 31
+select sum(UnitPrice*Quantity) as 'total', 
+avg(UnitPrice*Quantity)
+from [Order Details]
+where ProductID in (41,60,31)
+
+select sum(UnitPrice*Quantity) as 'Total', avg(UnitPrice*Quantity)
+from [Order Details]
+where ProductID = 41 or ProductID=60 or ProductID=31
+
+--	Consultas de BD del dia 09 de febrero 2024.
+
+-- selecciona el numero de clientes por cada pais, en donde solo sean
+-- incluidos los que tengan mas de 5 clientes y ordenados de forma descendente
+-- por el numero de clientes
+
+SELECT country, COUNT(*) AS numero_clientes
+FROM Customers
+GROUP BY Country
+HAVING COUNT(*) > 5
+ORDER BY numero_clientes DESC;
+
 
 
 
